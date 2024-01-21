@@ -1,6 +1,7 @@
 import React from 'react'
 import {View, Text} from 'react-native-web'
 import { GoogleMap, LoadScript } from '@react-google-maps/api';
+import {GOOGLE_MAPS_API_KEY} from '@env';
 
 function App() {
     const mapContainerStyle = {
@@ -14,7 +15,7 @@ function App() {
       };
     return (
         <LoadScript
-            googleMapsApiKey="AIzaSyBhio9NzCj7mhwf8kgljAIPsYBhV3GjEmQ" // 위에서 생성한 API 키를 여기에 입력
+            googleMapsApiKey={GOOGLE_MAPS_API_KEY} // 위에서 생성한 API 키를 여기에 입력
         >
         <View>
             <Text> 드디어 완성 </Text>
