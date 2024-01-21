@@ -29,6 +29,10 @@ module.exports = {
     module: {
         rules: [
         babelLoaderConfiguration,
+        {
+            test: /\.css$/,
+            use: ['style-loader', 'css-loader'],
+          },
         ]
     },
 
