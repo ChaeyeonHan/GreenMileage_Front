@@ -45,8 +45,8 @@ const Main = () => {
         </View>
       </View>
       <View style={styles.menu}>
-        <Text style={styles.menuItem}>HOME</Text>
-        <Text style={styles.menuItem}>MAP</Text>
+        <li><Link to='/' style={styles.menuItem}>HOME</Link></li>
+        <li><Link to='/map' style={styles.menuItem}>MAP</Link></li>
         <View style={styles.shopContainer}>
           <Text style={styles.menuItem} onPress={() => setShowSubMenu(!showSubMenu)}>
             SHOP
@@ -59,7 +59,7 @@ const Main = () => {
             </View>
         )}
         </View>
-        <Text style={styles.menuItem}>My PAGE</Text>
+        <li><Link to='/' style={styles.menuItem}>My PAGE</Link></li>
       </View>
       <FlatList
         horizontal
@@ -67,8 +67,10 @@ const Main = () => {
         showsHorizontalScrollIndicator={false}
         data={images}
         keyExtractor={(item, index) => index.toString()}
-        renderItem={({ item }) => (
-          <Image source={item } style={styles.featuredImage} />
+        renderItem={({ item, index }) => (
+          <View style={{ display: index === currentSlide ? 'flex' : 'none' }}>
+          <img src={item.default } alt="slide" style={styles.featuredImage} />
+          </View>
         )}
         onMomentumScrollEnd={(e) => {
           const scrollTo = Math.round(e.nativeEvent.contentOffset.x / e.nativeEvent.layoutMeasurement.width);
@@ -165,8 +167,10 @@ const styles = StyleSheet.create({
 
   },
   featuredImage: {
+    marginLeft: 100,
     width: '100%',
     height: 300,
+    alignItems: 'center',
   },
   paginationDots: {
     flexDirection: 'row',
