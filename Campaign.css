@@ -1,0 +1,33 @@
+.campaign-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+  
+  .card {
+    width: calc(33.33% - 16px);
+    margin: 16px;
+    padding: 16px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .card h2 {
+    margin-bottom: 8px;
+  }
+  
+  .card-image {
+    width: 100%;
+    max-height: 500px;
+    object-fit: cover;
+  }
+  
+  .card a {
+    display: block;
+    margin-top: 16px;
+    text-decoration: none;
+    color: #007bff;
+    font-weight: bold;
+  }
+  

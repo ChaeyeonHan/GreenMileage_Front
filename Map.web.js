@@ -19,7 +19,7 @@ function Map() {
       useEffect(() => {
         const fetchData = async () => {
           try {
-            const response = await fetch('http://localhost:3000/bicycle');
+            const response = await fetch('http://localhost:3000/bicycle/info');
             const data = await response.json();
             setbicyLocations(data);
           } catch (error) {
@@ -36,7 +36,7 @@ function Map() {
       useEffect(() => {
         const fetchData = async () => {
           try {
-            const response = await fetch('http://localhost:3000/electric_car');
+            const response = await fetch('http://localhost:3000/electric_car/info');
             const data = await response.json();
             setelecLocations(data);
           } catch (error) {
