@@ -11,7 +11,7 @@ const images = [
   require('./images/image5.jpeg'),
 ];
 
-const App = () => {
+const Main = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [showSubMenu, setShowSubMenu] = useState(false);
 
@@ -186,4 +186,4 @@ const styles = StyleSheet.create({
   // ... Rest of your styles ...
 });
 
-export default App;
+export default Main;
