@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import './page.css';
+import { useNavigate } from 'react-router';
 
 function Page() {
     const [userData, setUserData] = useState(null);
     const [followData, setFollowData] = useState(null);
+    const navigate = useNavigate();
 
     useEffect(() => {
         // 쿠키에서 토큰 읽어오기
@@ -45,10 +47,27 @@ function Page() {
         return <p>Loading user data...</p>;
     }
 
-    const { username, point, image } = userData;
+    const { email, username, point, image } = userData;
 
-    const follower_id = followData.follower_id;
-    const following_id = followData.following_id;
+    const allFollowers = followData.follower_id.map(item => ({
+        id: item.id,
+        username: item.username,
+        email: item.email,
+        image: item.image,
+        // 다른 속성들이 있다면 추가
+    }));
+    console.log(allFollowers);
+    const allFollowings = followData.following_id.map(item => ({
+        id: item.id,
+        username: item.username,
+        email: item.email,
+        image: item.image,
+        // 다른 속성들이 있다면 추가
+    }));
+    console.log(allFollowings);
+
+    
+
 
     return (
         <div className="user-profile">
@@ -57,8 +76,38 @@ function Page() {
             <div className="profile-image-container">
                 <img src={image} alt="User" className="profile-image" />
             </div>
-            <p>follower_id: {follower_id}</p>
-            <p>following_id: {following_id}</p>
+            <div>
+                Follower
+            {allFollowers.map((follower, index) => (
+                <div>
+                    key = {follower.id}
+                    username={follower.username}
+                    email={follower.email}
+                    <div className="profile-image-container">
+                        <img src={follower.image} alt="User" className="profile-image" />
+                    </div>
+                    <button onClick={() => {navigate("/chat", { state: { email: email , roomName: [email, follower.email].sort().join() } })}}>
+                        채팅하기
+                    </button>
+                </div>
+            ))}
+            </div>
+            <div>
+                Following
+            {allFollowings.map((following, index) => (
+                <div>
+                    key = {following.id}
+                    username={following.username}
+                    email={following.email}
+                    <div className="profile-image-container">
+                        <img src={following.image} alt="User" className="profile-image" />
+                    </div>
+                    <button>
+                        채팅하기
+                    </button>
+                </div>
+            ))}
+            </div>
         </div>
     );
 }
