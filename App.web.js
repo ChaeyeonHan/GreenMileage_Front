@@ -10,6 +10,7 @@ import Products from './products'
 import Login from './Login'
 import Signup from './Signup'
 import Page from './page'
+import Chat from './chatting'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 const App = () => {
@@ -25,6 +26,7 @@ const App = () => {
           <Route path="/login" element={<Login />}></Route>
           <Route path="/signup" element={<Signup />}></Route>
           <Route path="/mypage" element={<Page />}></Route>
+          <Route path="/chat" element={<Chat />}></Route>
 				</Routes>
 			</BrowserRouter>
 		</div>
