@@ -1,0 +1,115 @@
+.product-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.product-info-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* 중앙 정렬을 위해 추가 */
+    margin-bottom: 5px;
+    /* 여백을 추가하여 버튼과의 간격을 조정 */
+}
+
+.product-read-more {
+    margin-bottom: 5px;
+    /* 포인트와의 간격을 주기 위해 추가 */
+}
+
+.product-points {
+    /* 포인트 스타일 */
+    font-weight: bold;
+}
+
+.card {
+    width: calc(33.33% - 16px);
+    margin: 16px;
+    padding: 16px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card h2 {
+    margin-bottom: 8px;
+}
+
+.card-image {
+    width: 100%;
+    max-height: 500px;
+    object-fit: cover;
+}
+
+.card a {
+    display: inline;
+    margin-top: 16px;
+    text-decoration: none;
+    color: #007bff;
+    font-weight: bold;
+}
+
+.alignleft {
+    float: left;
+}
+
+.alignright {
+    float: right;
+}
+
+.modal {
+    display: block;
+    position: fixed;
+    /* 다른 스타일 속성들 */
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 600px;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.button {
+    display: inline;
+    padding: 5px 20px;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    background-color: #007bff;
+    color: #fff;
+    border: 2px solid #007bff;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.button:hover {
+    background-color: #0056b3;
+    color: #fff;
+}
+
+.button-container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    margin-top: 10px;
+}

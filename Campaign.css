@@ -4,6 +4,25 @@
     justify-content: space-around;
 }
   
+.campaign-info-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* 중앙 정렬을 위해 추가 */
+  margin-bottom: 5px;
+  /* 여백을 추가하여 버튼과의 간격을 조정 */
+}
+
+.campaign-read-more {
+  margin-bottom: 5px;
+  /* 포인트와의 간격을 주기 위해 추가 */
+}
+
+.campaign-points {
+  /* 포인트 스타일 */
+  font-weight: bold;
+}
+
 .card {
   width: calc(33.33% - 16px);
   margin: 16px;

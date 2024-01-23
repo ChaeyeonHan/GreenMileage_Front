@@ -6,6 +6,7 @@ import Header from './header'
 import Map from './Map.web'
 import Main from './Main.web'
 import Campaign from './campaign'
+import Products from './products'
 import Login from './Login'
 import Signup from './Signup'
 import Page from './page'
@@ -20,6 +21,7 @@ const App = () => {
 					<Route path="/" element={<Main />}></Route>
           <Route path="/map" element={<Map />}></Route>
           <Route path="/campaign" element={<Campaign />}></Route>
+          <Route path="/products" element={<Products />}></Route>
           <Route path="/login" element={<Login />}></Route>
           <Route path="/signup" element={<Signup />}></Route>
           <Route path="/mypage" element={<Page />}></Route>

@@ -1,21 +1,21 @@
 import React, { useState, useEffect } from 'react'
-import './Campaign.css'
+import './Products.css'
 
-function Campaign() {
+function Products() {
 
-    const [campaigns, setCampaign] = useState([]);
+    const [products, setCampaign] = useState([]);
     const [participationStatus, setParticipationStatus] = useState([]);
 
     useEffect(() => {
         const fetchData = async () => {
-          try {
-            const response = await fetch('http://localhost:3001/campaign/info');
+        try {
+            const response = await fetch('http://localhost:3001/products/info');
             const data = await response.json();
             setCampaign(data);
 
             // 캠페인별 참여상태 초기화
-            const initialStatus = data.reduce((acc, campaign) => {
-              acc[campaign.title] = false;
+            const initialStatus = data.reduce((acc, products) => {
+              acc[products.name] = false;
               return acc;
             }, {});
               setParticipationStatus(initialStatus);
@@ -27,10 +27,10 @@ function Campaign() {
         fetchData();
       }, []); // 빈 배열은 컴포넌트가 처음 마운트될 때 한 번만 실행
 
-    const handleParticipation = (title) => {
+    const handleParticipation = (name) => {
     setParticipationStatus(prevStatus => ({
         ...prevStatus,
-        [title]: !prevStatus[title] // 특정 캠페인의 참여 상태만 토글
+        [name]: !prevStatus[name] // 특정 캠페인의 참여 상태만 토글
     }));
   };
 
@@ -51,18 +51,15 @@ function Campaign() {
 
     return(
         <div className="campaign-container">
-            {campaigns.map((campaign) => (
-                <div key={campaign.id} className="card">
-                    <h2>{campaign.title}</h2>
-                    <img src={campaign.imageUrl} alt={campaign.title} className="card-image" />
+            {products.map((products) => (
+                <div key={products.id} className="card">
+                    <h2>{products.name}</h2>
+                    <img src={products.imageUrl} alt={products.name} className="card-image" />
                     {/* 기타 캠페인 정보 */}
-                    <a href={campaign.link} target="_blank" rel="noopener noreferrer">Read More</a>
+                    <a href={products.link} target="_blank" rel="noopener noreferrer">Read More</a>
                     <div className="button-container" style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '10px' }}>
-                        <button className="button" onClick={() => openModal(campaign)}>
-                            {campaign.participants}명 참여중
-                        </button>
-                        <button className="button" style={{ marginLeft: '10px' }} onClick={() => handleParticipation(campaign.title)}>
-                            {participationStatus[campaign.title] ? "참여중" : "참여하기"}
+                        <button className="button" style={{ marginLeft: '10px' }} onClick={() => handleParticipation(products.name)}>
+                            {participationStatus[products.name] ? "구매완료" : "구매하기"}
                         </button>
                     </div>
                 </div>
@@ -74,7 +71,7 @@ function Campaign() {
             <span className="close" onClick={closeModal}>
               &times;
             </span>
-            <h2>{selectedCampaign.title}</h2>
+            <h2>{selectedCampaign.name}</h2>
             <p>{selectedCampaign.participants}명 참여중</p>
           </div>
         </div>
@@ -83,4 +80,4 @@ function Campaign() {
     );
 };
 
-export default Campaign;
+export default Products;
