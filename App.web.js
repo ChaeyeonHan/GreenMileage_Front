@@ -6,6 +6,9 @@ import Header from './header'
 import Map from './Map.web'
 import Main from './Main.web'
 import Campaign from './campaign'
+import Login from './Login'
+import Signup from './Signup'
+import Page from './page'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 const App = () => {
@@ -17,6 +20,9 @@ const App = () => {
 					<Route path="/" element={<Main />}></Route>
           <Route path="/map" element={<Map />}></Route>
           <Route path="/campaign" element={<Campaign />}></Route>
+          <Route path="/login" element={<Login />}></Route>
+          <Route path="/signup" element={<Signup />}></Route>
+          <Route path="/mypage" element={<Page />}></Route>
 				</Routes>
 			</BrowserRouter>
 		</div>

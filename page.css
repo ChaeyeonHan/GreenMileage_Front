@@ -1,0 +1,15 @@
+
+  
+  .profile-image-container {
+    width: 200px; /* 이미지 컨테이너의 크기를 조절하세요 */
+    height: 200px;
+    overflow: hidden;
+    border-radius: 50%; /* 반지름 50%로 설정하여 원 모양으로 만듭니다. */
+  }
+  
+  .profile-image {
+    width: 100%; /* 이미지를 컨테이너에 꽉 차도록 설정합니다. */
+    height: 100%;
+    object-fit: cover; /* 이미지 비율 유지하면서 컨테이너에 맞게 설정합니다. */
+    border-radius: 50%; /* 이미지도 원 모양으로 설정합니다. */
+  }

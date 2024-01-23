@@ -12,6 +12,7 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { useNavigate, Outlet } from "react-router-dom";
 
 function Copyright(props) {
     return (
@@ -30,15 +31,38 @@ function Copyright(props) {
 
 const defaultTheme = createTheme();
 
-export default function SignIn() {
+export default function Login() {
+  const navigate = useNavigate();
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
+    sendDataToServer(data.get('email'),data.get('password'))
+  };
+
+  const sendDataToServer = async (email, password) => {
+    const userData = {
+      email: email,
+      password: password
+    };
+    fetch('http://localhost:3000/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      credentials: "include",
+      body: JSON.stringify(userData),
+    })
+    .then(response => response.json())
+    .then(data => {
+      const token = data.jwt;
+      localStorage.setItem('authToken', token);
+      navigate("/");
+    })
+    .catch((error) => {
+      console.error('Error:', error);
     });
   };
+
 
   return (
     <ThemeProvider theme={defaultTheme}>
@@ -56,7 +80,7 @@ export default function SignIn() {
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            Sign in
+            Login
           </Typography>
           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
             <TextField
@@ -89,7 +113,15 @@ export default function SignIn() {
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
             >
-              Sign In
+              Login
+            </Button>
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              sx={{ mt: 3, mb: 2 }}
+            >
+              kakaoLogin
             </Button>
             <Grid container>
               <Grid item xs>

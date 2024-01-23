@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, Image, ScrollView, TextInput, TouchableOpacity, FlatList } from 'react-native';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import Icon from 'react-native-vector-icons/Ionicons';
+import Cookies from 'js-cookie';
 
 const images = [
   require('./images/image1.jpeg'),
@@ -29,6 +30,8 @@ const Main = () => {
     setCurrentSlide(slideIndex);
   };
 
+
+
   return (
     <ScrollView style={styles.container}>
       <View style={styles.header}>
@@ -39,7 +42,7 @@ const Main = () => {
             placeholder="Search"
           />
           {/* <Icon name="ios-search" size={30} color="white" style={{paddingRight:20, paddingLeft:20}}/> */}
-          <Icon name="ios-search" size={30} color="#000" style={styles.searchIcon}/>
+          <Icon name="search-outline" size={30} color="#000" style={styles.searchIcon}/>
 
           <ion-icon name="search-outline"></ion-icon>
         </View>
