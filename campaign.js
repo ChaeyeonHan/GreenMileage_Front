@@ -97,6 +97,36 @@ function Campaign() {
       setSelectedCampaign(null);
     };
 
+    const [parts, setParts] = useState([]);
+
+    useEffect(() => {
+      if (participants) {
+        const fetchData = async () => {
+          const newParts = [];
+          for (const participant of participants) {
+            try {
+              const res = await fetch('http://localhost:3000/get_user_info/campaign-participants', {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                  email: participant.user_email
+                }),
+              });
+              const data1 = await res.json();
+              newParts.push(data1);
+            } catch (error) {
+              console.error(error);
+            }
+          }
+          setParts(newParts);
+        };
+    
+        fetchData();
+      }
+    }, [participants]);
+
     return(
       <div className="campaign-container">
       {campaigns.map((campaign) => (
@@ -127,11 +157,13 @@ function Campaign() {
           <div className="modal-content">
             <span className="close" onClick={closeModal}>&times;</span>
             <h2>{selectedCampaign.title}</h2>
-            {participants && participants.map((participant) => (
-                        <div key={participant.user_email}>
-                            <p>{participant.user_email}</p>
-                        </div>
-                    ))}
+            {parts && parts.map((participant) => (
+                <div key={participant.email}>
+                    <p>{participant.email}</p>
+                    <p>{participant.username}</p>
+                    <img src={participant.image} className="fprofile-image-container"/>
+                </div>
+            ))}
           </div>
         </div>
       )}
