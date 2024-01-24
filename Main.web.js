@@ -75,7 +75,8 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },  
   featuredImage: {
-    justifyContent: 'center',
+    marginTop: 80,
+    marginLeft: 300,
     width: '100%',
     height: 300,
     alignItems: 'center',
