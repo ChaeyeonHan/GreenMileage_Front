@@ -5,33 +5,25 @@ import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 const Main = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [campaigns, setCampaign] = useState([]);
-  const [images, setImages] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  const fetchData = () => {
-    return new Promise(async (resolve, reject) => {
-      try {
-        const response = await fetch('http://localhost:3000/campaign/info');
-        const data = await response.json();
+  const fetchData = async () => {
+    try {
+      const response = await fetch('http://localhost:3000/campaign/info');
+      const data = await response.json();
 
-        const dataPoints = data.map(item => ({...item}));
-        setCampaign(dataPoints);
-        const uniqueImages = dataPoints;
-        setImages(uniqueImages);
-        setLoading(false);
-        resolve(uniqueImages);
-      } catch (error) {
-        console.error('Error fetching data:', error);
-        setLoading(false);
-        reject(error);
-      }
-    });
+      const dataPoints = data.map(item => ({ ...item }));
+      setCampaign(dataPoints);
+      setLoading(false);
+    } catch (error) {
+      console.error('Error fetching data:', error);
+      setLoading(false);
+    }
   };
 
   useEffect(() => {
     const fetchDataAndReturn = async () => {
       await fetchData();
-      // fetchData가 완료된 후에 다시 반환
       console.log("Data fetching completed!");
     };
 
@@ -40,16 +32,12 @@ const Main = () => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentSlide((prevCurrentSlide) => 
-        prevCurrentSlide === images.length - 1 ? 0 : prevCurrentSlide + 1
+      setCurrentSlide((prevCurrentSlide) =>
+        prevCurrentSlide === campaigns.length - 1 ? 0 : prevCurrentSlide + 1
       );
-    }, 3000); // Change image every 3 seconds
+    }, 3000); // Change campaign every 3 seconds
     return () => clearInterval(interval);
-  }, [images]);
-
-  const goToSlide = (slideIndex) => {
-    setCurrentSlide(slideIndex);
-  };
+  }, [campaigns]);
 
   return (
     <ScrollView style={styles.container}>
@@ -57,44 +45,27 @@ const Main = () => {
         <Text>Loading...</Text>
       ) : (
         <>
-          <FlatList
-            horizontal
-            pagingEnabled
-            showsHorizontalScrollIndicator={false}
-            data={images}
-            keyExtractor={(item, index) => index.toString()}
-            renderItem={({ item, index }) => (
+          <View style={styles.card}>
+            <Image source={{ uri: campaigns[currentSlide].image }} style={styles.featuredImage} />
+            <View style={styles.cardContent}>
+              <Text style={styles.title}>{campaigns[currentSlide].title}</Text>
+              <Text
+                style={styles.readMoreText}
+                onPress={() => {
+                  window.open(campaigns[currentSlide].link, '_blank');
+                }}
+              >
+                Read More
+              </Text>
+            </View>
+          </View>
+          <View style={styles.paginationDots}>
+            {campaigns.map((_, index) => (
               <TouchableOpacity
                 key={index}
-                style={[
-                  styles.card,
-                  { display: index === currentSlide ? 'flex' : 'none' },
-                ]}
-              >
-                <Image source={{ uri: item.image }} style={styles.featuredImage} />
-                <View style={styles.cardContent}>
-                  <Text style={styles.title}>{item.title}</Text>
-                  <TouchableOpacity
-                    style={styles.readMoreButton}
-                    onPress={() => {
-                      window.open(item.link, '_blank');
-                    }}
-                  >
-                    <Text style={styles.readMoreText}>Read More</Text>
-                  </TouchableOpacity>
-                </View>
-              </TouchableOpacity>
-            )}
-            onMomentumScrollEnd={(e) => {
-              const scrollTo = Math.round(e.nativeEvent.contentOffset.x / e.nativeEvent.layoutMeasurement.width);
-              if (scrollTo !== currentSlide) {
-                setCurrentSlide(scrollTo);
-              }
-            }}
-          />
-          <View style={styles.paginationDots}>
-            {images.map((_, index) => (
-              <TouchableOpacity key={index} style={[styles.dot, currentSlide === index && styles.activeDot]} onPress={() => goToSlide(index)} />
+                style={[styles.dot, currentSlide === index && styles.activeDot]}
+                onPress={() => setCurrentSlide(index)}
+              />
             ))}
           </View>
         </>
@@ -110,27 +81,31 @@ const styles = StyleSheet.create({
   },
   card: {
     flex: 1,
-    alignItems: 'center',
+    flexDirection: 'row',
+    alignItems: 'center', // 이미지와 텍스트를 수직 중앙 정렬
   },
   cardContent: {
+    flex: 1,
     padding: 15,
   },
-  readMoreButton: {
-    backgroundColor: '#1d71cb',
-    padding: 8,
-    borderRadius: 4,
-    marginTop: 10,
-  },
   readMoreText: {
-    color: '#fff',
+    color: '#1d71cb',
+    marginTop: 10,
+    textDecorationLine: 'underline', // 밑줄 추가
+    cursor: 'pointer', // 마우스 hover 시 포인터로 변경
+  },
+  title: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginBottom: 10,
   },
   featuredImage: {
-    marginTop: 80,
-    marginLeft: 300,
-    width: '100%',
-    height: 300,
-    alignItems: 'center',
-    zIndex: 1
+    borderRadius: 8,
+    marginLeft: 20,
+    marginTop: 20,
+    width: '40%', // 이미지 크기 조절
+    height: 400, // 이미지 높이 조절
+    resizeMode: 'cover', // 이미지 크기 조절 시 유용한 옵션
   },
   paginationDots: {
     flexDirection: 'row',
@@ -147,7 +122,6 @@ const styles = StyleSheet.create({
   activeDot: {
     backgroundColor: '#333',
   },
-  // ... (나머지 스타일 정의)
 });
 
 export default Main;
