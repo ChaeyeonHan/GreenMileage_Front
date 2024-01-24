@@ -79,15 +79,29 @@ function Map() {
         // 페이지를 새로고침
         window.location.reload();
       };
+
+      const buttonStyle = {
+        backgroundColor: 'rgba(255,255,255,0.8)', // 버튼의 배경색을 약간 투명하게 설정
+        padding: '10px',
+        margin: '0 20px', // 좌우 마진
+        cursor: 'pointer',
+        color: 'blue',
+        borderRadius: '5px',
+    };
+
+    const buttonContainerStyle = {
+        position: 'absolute',
+        bottom: '20px',
+        left: '20px',
+        zIndex: 5,
+        display: 'flex',
+        flexDirection: 'row',
+    };
       
     return (
         <LoadScript
-            googleMapsApiKey={GOOGLE_MAPS_API_KEY} // 위에서 생성한 API 키를 여기에 입력
-        >
-        <View>
-            <Text> 드디어 완성 </Text>
-        </View>
-        <View>
+            googleMapsApiKey={GOOGLE_MAPS_API_KEY}>
+          <View style={{ position: 'relative', width: '100%', height: '100%' }}>
         <GoogleMap
           mapContainerStyle={mapContainerStyle}
           center={currentPosition || defaultCenter}
@@ -100,7 +114,6 @@ function Map() {
               icon={{ url: 'http://maps.google.com/mapfiles/ms/icons/red-dot.png' }}
             />
           )}
-
           {/* JSON 데이터의 위치를 마커로 표시 */}
           {showBicyLocations && bicylocations.map((location) => (
             <Marker
@@ -117,20 +130,20 @@ function Map() {
             />
           ))}
         </GoogleMap>
+      <View style={buttonContainerStyle}>
+          <Text onClick={handleToggleBicyLocations} style={buttonStyle}>
+              Toggle Bicy Locations
+          </Text>
+          <Text onClick={handleToggleElecLocations} style={buttonStyle}>
+              Toggle Elec Locations
+          </Text>
+          <Text onClick={handleButtonClick} style={buttonStyle}>
+              Current Location
+          </Text>
       </View>
-      <View>
-        <div onClick={handleToggleBicyLocations} style={{ cursor: 'pointer', color: 'blue' }}>
-          Toggle Bicy Locations
-        </div>
-        <div onClick={handleToggleElecLocations} style={{ cursor: 'pointer', color: 'blue' }}>
-          Toggle Elec Locations
-        </div>
-        <div onClick={handleButtonClick} style={{ cursor: 'pointer', color: 'blue' }}>
-          Current Location
-        </div>
-      </View>
-    </LoadScript>
-    )
+    </View>  
+  </LoadScript>
+  )
 }
 
 export default Map
