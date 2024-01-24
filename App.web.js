@@ -11,6 +11,7 @@ import Login from './Login'
 import Signup from './Signup'
 import Page from './page'
 import Chat from './chatting'
+import Ex from './ex'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 const App = () => {
@@ -27,6 +28,7 @@ const App = () => {
           <Route path="/signup" element={<Signup />}></Route>
           <Route path="/mypage" element={<Page />}></Route>
           <Route path="/chat" element={<Chat />}></Route>
+          <Route path="/ex" element={<Ex />}></Route>
 				</Routes>
 			</BrowserRouter>
 		</div>

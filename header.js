@@ -7,6 +7,10 @@ import Icon from 'react-native-vector-icons/Ionicons';
 const Header = () => {
 
   const [showSubMenu, setShowSubMenu] = useState(true);
+  const [selectedMenu, setSelectedMenu] = useState('HOME');
+  const handleMenuClick = (menuName) => {
+    setSelectedMenu(menuName);
+  };
 
   return (
     <nav style={styles.container}>
@@ -21,21 +25,23 @@ const Header = () => {
         </View>
       </View>
       <View style={styles.menu}>
-        <li><Link to='/' style={styles.menuItem}>HOME</Link></li>
-        <li><Link to='/map' style={styles.menuItem}>MAP</Link></li>
-        <View style={styles.shopContainer}>
-        <Text style={styles.menuItem} onPress={() => setShowSubMenu(!showSubMenu)}>
-          SHOP
-          {showSubMenu ? '▲' : '▼'} {/* 토글 아이콘 추가 */}
-        </Text>
-        {showSubMenu && (
-          <View style={styles.dropdownMenu}>
-            <li><Link to='/products' style={styles.dropdownItem}>Products</Link></li>
-            <li><Link to='/campaign' style={styles.dropdownItem}>Campaign</Link></li>
-          </View>
-      )}
-      </View>
-        <li><Link to='/mypage' style={styles.menuItem}>My PAGE</Link></li>
+        {['HOME', 'ex', 'MAP', 'SHOP', 'My PAGE'].map((menuName) => (
+          <TouchableOpacity
+            key={menuName}
+            onPress={() => handleMenuClick(menuName)}
+            style={[
+              styles.menuItem,
+              selectedMenu === menuName && styles.menuItemSelected,
+            ]}
+          >
+          <Text style={[
+            styles.menuText,
+            selectedMenu === menuName && styles.menuTextSelected
+          ]}>
+          {menuName}
+          </Text>
+          </TouchableOpacity>
+          ))}
       </View>
     </nav>
   );
@@ -44,7 +50,7 @@ const Header = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#F8F0E2',
   },
   header: {
     flexDirection: 'row',
@@ -85,6 +91,20 @@ const styles = StyleSheet.create({
   menuItem: {
     fontSize: 16,
     fontWeight: 'bold',
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderRadius: 20,
+    backgroundColor: 'transparent',
+    borderColor: 'transparent',
+    borderWidth: 1,
+    marginHorizontal: 5,
+  },
+  menuItemSelected: {
+    backgroundColor: '#89B998', // 버튼 선택시 배경색상
+    color: '#FFFFFF', // 버튼 선택시 글자색상
+  },
+  menuTextSelected: {
+    color: '#FFFFFF', // 버튼 선택시 글자색상
   },
   subMenu: {
     paddingVertical: 10,
