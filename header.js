@@ -34,6 +34,8 @@ const Header = () => {
 
   return (
     <nav style={styles.container}>
+      <li><Link to='/login' style={styles.menuItem}>Login</Link></li>
+        <li><Link to='/signup' style={styles.menuItem}>Signup</Link></li>
       <View style={styles.header}>
         <View style={styles.leftSection}></View>
         <Text style={styles.title}>GreenMileage</Text>
