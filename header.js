@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import { StyleSheet, Text, View, Image, ScrollView, TextInput, TouchableOpacity, FlatList } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { useNavigate  } from 'react-router-dom';
-import loginImage from './images/kisspng-computer-icons-google-account-icon-design-login-5afc02dab4a218.0950785215264652427399.jpg';
+import loginImage from './images/userLogin.png';
 import signupImage from './images/register_login_signup_icon_219991.png';
 
 const Header = () => {
