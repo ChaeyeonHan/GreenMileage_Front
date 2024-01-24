@@ -9,7 +9,7 @@ function Campaign() {
     useEffect(() => {
         const fetchData = async () => {
           try {
-            const response = await fetch('http://localhost:3001/campaign/info');
+            const response = await fetch('http://localhost:3000/campaign/info');
             const data = await response.json();
             setCampaign(data);
 
