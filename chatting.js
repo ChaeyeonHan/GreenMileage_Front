@@ -8,6 +8,7 @@ let socket;
 function Chat() {
     const location = useLocation();
     const email = location.state?.email;
+    const image = location.state?.image;
     const roomName = location.state?.roomName;
     const [messages, setMessages] = useState([]);
     const [newMessage, setNewMessage] = useState('');
@@ -15,7 +16,7 @@ function Chat() {
 
     useEffect(() => {
         // 소켓 생성
-        const socket = io(ENDPOINT);
+        socket = io(ENDPOINT);
 
         // 채팅방 입장
         socket.emit('joinRoom', { chatRoomName: roomName, userEmail: email }, (err) => {
@@ -31,14 +32,14 @@ function Chat() {
 
         // 컴포넌트 언마운트 시 소켓 이벤트 정리
         return () => {
-            socket.emit('disconnect');
+            socket.emit('leaveRoom', {userEmail: email, chatRoomName: roomName});
             socket.off();
         };
     }, [roomName, email]);
 
     const sendMessage = () => {
-        const socket = io(ENDPOINT);
-        socket.emit('sendMessage', {chatRoomName: roomName, userEmail: email, message: newMessage, profile_image: null}, (err) => {
+        setNewMessage('');
+        socket.emit('sendMessage', {chatRoomName: roomName, userEmail: email, message: newMessage, profile_image: image}, (err) => {
             if(err) {
                 alert(err);
             }

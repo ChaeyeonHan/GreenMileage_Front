@@ -86,7 +86,7 @@ function Page() {
                     <div className="profile-image-container">
                         <img src={follower.image} alt="User" className="profile-image" />
                     </div>
-                    <button onClick={() => {navigate("/chat", { state: { email: email , roomName: [email, follower.email].sort().join() } })}}>
+                    <button onClick={() => {navigate("/chat", { state: { email: email , image: image, roomName: [email, follower.email].sort().join() } })}}>
                         채팅하기
                     </button>
                 </div>
@@ -102,7 +102,7 @@ function Page() {
                     <div className="profile-image-container">
                         <img src={following.image} alt="User" className="profile-image" />
                     </div>
-                    <button>
+                    <button onClick={() => {navigate("/chat", { state: { email: email , image: image, roomName: [email, following.email].sort().join() } })}}>
                         채팅하기
                     </button>
                 </div>

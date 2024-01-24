@@ -9,7 +9,7 @@ function Products() {
     useEffect(() => {
         const fetchData = async () => {
         try {
-            const response = await fetch('http://localhost:3001/products/info');
+            const response = await fetch('http://localhost:3000/products/info');
             const data = await response.json();
             setCampaign(data);
 

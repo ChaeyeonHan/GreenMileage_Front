@@ -17,7 +17,7 @@ function Campaign() {
 
       const fetchData = async () => {
         try {
-          const response = await fetch('http://localhost:3001/campaign/info');
+          const response = await fetch('http://localhost:3000/campaign/info');
           const data = await response.json();
 
           // 각 캠페인에 랜덤 포인트 추가
