@@ -36,7 +36,7 @@ function Campaign() {
       fetchData();
       }, []); // 빈 배열은 컴포넌트가 처음 마운트될 때 한 번만 실행
 
-    const handleParticipation = async (title, points) => {
+    const handleParticipation = async (title, points, image, link) => {
       try {
         setParticipationStatus(prevStatus => ({
             ...prevStatus,
@@ -58,7 +58,9 @@ function Campaign() {
           },
           body: JSON.stringify({
             campaign_title: title,
-            addPoints: points
+            addPoints: points,
+            campaign_image: image,
+            campaign_link: link
           })
         });
       } catch (error) {
@@ -97,7 +99,7 @@ function Campaign() {
               </button>
               <button
                 className={`button ${participationStatus[campaign.title] ? "participating" : ""}`}
-                onClick={() => handleParticipation(campaign.title, campaign.points)}
+                onClick={() => handleParticipation(campaign.title, campaign.points, campaign.image, campaign.link)}
               >
                 {participationStatus[campaign.title] ? "참여중" : "참여하기"}
               </button>
