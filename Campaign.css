@@ -1,4 +1,5 @@
 .campaign-container {
+  background-color: #F8F0E2;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
@@ -35,7 +36,7 @@ h2 {
 }
 
 .campaign-read-more {
-  color: #007bff;
+  color: #a9cbef;
   font-weight: bold;
   text-decoration: none;
   display: block;
@@ -51,7 +52,7 @@ h2 {
 
 .button {
   padding: 8px 16px;
-  background-color: #007bff;
+  background-color: #9fc3ea;
   color: #fff;
   border: none;
   border-radius: 4px;
@@ -61,7 +62,7 @@ h2 {
 }
 
 .button:hover {
-  background-color: #0056b3;
+  background-color: #1d71cb;
 }
 
 .participating {

@@ -62,7 +62,7 @@ const Main = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#F8F0E2',
   },
   menu: {
     flexDirection: 'row',

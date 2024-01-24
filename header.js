@@ -56,6 +56,7 @@ const Header = () => {
             style={[
               styles.menuItem,
               selectedMenu === menuName && styles.menuItemSelected,
+              {fontSize: 30},
             ]}
           >
           <Text style={[
@@ -89,7 +90,7 @@ const styles = StyleSheet.create({
   title: {
     flex: 1,
     textAlign: 'center',
-    fontSize: 24,
+    fontSize: 30,
     fontWeight: 'bold',
   },
   rightSection: {
