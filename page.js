@@ -90,9 +90,7 @@ function Page() {
         <div className="mypage">
             <div className="user-profile">
                 <div className="user-info">
-                    <div className="profile-image-container">
-                        <img src={image} alt="User" className="profile-image" />
-                    </div>
+                    <img src={image} alt="User" className="profile-image-container" />
                     <div className="user-details">
                         <p className="username">{username}</p>
                         <p className="point">Point: {point}</p>
@@ -105,8 +103,8 @@ function Page() {
                         {showFollowers && allFollowers.map((follower) => (
                         <div key={follower.id} className="follower">
                             <p className="follower-username">{follower.username}</p>
-                            <div className="fprofile-image-container">
-                                <img src={follower.image} alt="User" className="profile-image" />
+                            <div>
+                                <img src={follower.image} alt="User" className="fprofile-image-container" />
                             </div>
                             <button onClick={() => { navigate("/chat", { state: { email: email, image: image, roomName: [email, follower.email].sort().join() } }) }}>
                                 채팅하기
@@ -119,9 +117,9 @@ function Page() {
                         <h3 onClick={toggleFollowings}>Following</h3>
                         {showFollowings && allFollowings.map((following) => (
                         <div key={following.id} className="following-user">
-                            <p className="following-username">{following.username}</p>
-                        <div className="fprofile-image-container">
-                            <img src={following.image} alt="User" className="profile-image" />
+                        <p className="following-username">{following.username}</p>
+                        <div>
+                        <img src={following.image} alt="User" className="fprofile-image-container" />
                         </div>
                         <button onClick={() => { navigate("/chat", { state: { email: email, image: image, roomName: [email, following.email].sort().join() } }) }}>
                             채팅하기
@@ -132,22 +130,27 @@ function Page() {
                 </div>
             </div>
             <div className='mycampaigns'>
-                {campaignData.map((campaign) => (
-                        <div key={campaign.id} className="card">
+                <div className='camtext'>
+                    내가 참여중인 캠페인
+                </div>
+                <div className='campaigns'>
+                    {campaignData.map((campaign) => (
+                    <div key={campaign.id} className="card">
                         <img src={campaign.image} alt={campaign.title} className="card-image" />
                         <div className="card-content">
-                          <h2>{campaign.title}</h2>
-                          <a href={campaign.link} target="_blank" rel="noopener noreferrer" className="campaign-read-more">
-                            Read More
-                          </a>
-                          <div className='button-container'>
-                            <button className="button" onClick={() => openModal(campaign)}>
-                              {campaign.participants}명 참여중
-                            </button>
-                          </div>
+                            <h2>{campaign.title}</h2>
+                            <a href={campaign.link} target="_blank" rel="noopener noreferrer" className="campaign-read-more">
+                                Read More
+                            </a>
+                            <div className='button-container'>
+                                <button className="button" onClick={() => openModal(campaign)}>
+                                {campaign.participants}명 참여중
+                                </button>
+                            </div>
                         </div>
-                      </div>
+                    </div>
                     ))}
+                </div>
             </div>
         </div>
     );

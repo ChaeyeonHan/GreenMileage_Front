@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
 import {View, Text, Switch} from 'react-native-web'
-import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api'
-import {GOOGLE_MAPS_API_KEY} from '@env'
 import Header from './header'
 import Map from './Map.web'
 import Main from './Main.web'
@@ -13,10 +11,11 @@ import Page from './page'
 import Chat from './chatting'
 import Ex from './ex'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { StyleSheet} from 'react-native';
 
 const App = () => {
   return (
-    <div className='App'>
+    <div className='App' style={styles.container}>
 			<BrowserRouter>
         <Header />
 				<Routes>
@@ -34,5 +33,12 @@ const App = () => {
 		</div>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: '#F8F0E2',
+  }
+});
+
 
 export default App;
