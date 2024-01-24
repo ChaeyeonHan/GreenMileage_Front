@@ -5,15 +5,10 @@ function Campaign() {
 
     const [campaigns, setCampaign] = useState([]);
     const [participationStatus, setParticipationStatus] = useState([]);
+    const [selectedCampaign, setSelectedCampaign] = useState(null);
 
     useEffect(() => {
       // 토큰 가져오기
-      const storedToken = localStorage.getItem('authToken');
-      if (!storedToken) {
-        console.log("토큰없어여");
-          // 토큰이 없으면 로그인 페이지로 리다이렉트
-          return;
-      }
 
       const fetchData = async () => {
         try {
@@ -41,21 +36,29 @@ function Campaign() {
       fetchData();
       }, []); // 빈 배열은 컴포넌트가 처음 마운트될 때 한 번만 실행
 
-    const handleParticipation = async (title) => {
+    const handleParticipation = async (title, points) => {
       try {
         setParticipationStatus(prevStatus => ({
             ...prevStatus,
             [title]: !prevStatus[title] // 특정 캠페인의 참여 상태만 토글
         }));
+        const storedToken = localStorage.getItem('authToken');
+        if (!storedToken) {
+          console.log("토큰없어여");
+            // 토큰이 없으면 로그인 페이지로 리다이렉트
+            return;
+        }
+        
 
-        const response = await fetch('http://localhost"3000/users/campaign', {
+        const response = await fetch('http://localhost:3000/users/campaign', {
           method: 'PATCH',
           headers: {
             'Content-Type': 'application/json',
-            'Authorization': 'Bearer ${storedToken}'
+            'Authorization': `Bearer ${storedToken}`
           },
           body: JSON.stringify({
-            addPoints: selectedCampaign.points
+            title: title,
+            addPoints: points
           })
         });
       } catch (error) {
@@ -65,7 +68,6 @@ function Campaign() {
 
 
     const [modalOpen, setModalOpen] = useState(false);
-    const [selectedCampaign, setSelectedCampaign] = useState(null);
 
     const openModal = (campaign) => {
       console.log('Open Modal Clicked');
@@ -93,7 +95,7 @@ function Campaign() {
                         <button className="button" onClick={() => openModal(campaign)}>
                             {campaign.participants}명 참여중
                         </button>
-                        <button className="button" style={{ marginLeft: '10px' }} onClick={() => handleParticipation(campaign.title)}>
+                        <button className="button" style={{ marginLeft: '10px' }} onClick={() => handleParticipation(campaign.title, campaign.points)}>
                             {participationStatus[campaign.title] ? "참여중" : "참여하기"}
                         </button>
                     </div>

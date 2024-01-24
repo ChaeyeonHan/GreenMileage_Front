@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router';
 function Page() {
     const [userData, setUserData] = useState(null);
     const [followData, setFollowData] = useState(null);
+    const [campaignData, setCampaignData] = useState(null);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -56,7 +57,6 @@ function Page() {
         image: item.image,
         // 다른 속성들이 있다면 추가
     }));
-    console.log(allFollowers);
     const allFollowings = followData.following_id.map(item => ({
         id: item.id,
         username: item.username,
@@ -64,9 +64,6 @@ function Page() {
         image: item.image,
         // 다른 속성들이 있다면 추가
     }));
-    console.log(allFollowings);
-
-    
 
 
     return (
