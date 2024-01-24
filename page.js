@@ -45,11 +45,19 @@ function Page() {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${storedToken}`,
                 },
+            }).then(response => response.json()),
+            fetch('http://localhost:3000/get_user_info/my-campaigns', {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${storedToken}`,
+                },
             }).then(response => response.json())
         ])
-        .then(([userData, followData]) => {
+        .then(([userData, followData, campaignData]) => {
             setUserData(userData);
             setFollowData(followData);
+            setCampaignData(campaignData);
         })
         .catch(error => {
             console.error('Error fetching user data:', error);
@@ -76,8 +84,6 @@ function Page() {
         image: item.image,
         // 다른 속성들이 있다면 추가
     }));
-
-
 
 
     return (
@@ -126,7 +132,22 @@ function Page() {
                 </div>
             </div>
             <div className='mycampaigns'>
-                캠페인
+                {campaignData.map((campaign) => (
+                        <div key={campaign.id} className="card">
+                        <img src={campaign.image} alt={campaign.title} className="card-image" />
+                        <div className="card-content">
+                          <h2>{campaign.title}</h2>
+                          <a href={campaign.link} target="_blank" rel="noopener noreferrer" className="campaign-read-more">
+                            Read More
+                          </a>
+                          <div className='button-container'>
+                            <button className="button" onClick={() => openModal(campaign)}>
+                              {campaign.participants}명 참여중
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
             </div>
         </div>
     );
