@@ -100,6 +100,7 @@ function Map() {
       
     return (
         <LoadScript
+
             googleMapsApiKey={GOOGLE_MAPS_API_KEY}>
           <View style={{ position: 'relative', width: '100%', height: '100%' }}>
         <GoogleMap

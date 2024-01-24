@@ -8,6 +8,18 @@ function Page() {
     const [campaignData, setCampaignData] = useState(null);
     const navigate = useNavigate();
 
+    const [showFollowers, setShowFollowers] = useState(false);
+
+    const toggleFollowers = () => {
+        setShowFollowers(!showFollowers);
+    };
+
+    const [showFollowings, setShowFollowings] = useState(false);
+
+    const toggleFollowings = () => {
+        setShowFollowings(!showFollowings);
+    };
+
     useEffect(() => {
         // 쿠키에서 토큰 읽어오기
         const storedToken = localStorage.getItem('authToken');
@@ -66,44 +78,55 @@ function Page() {
     }));
 
 
+
+
     return (
-        <div className="user-profile">
-            <p>Username: {username}</p>
-            <p>Point: {point}</p>
-            <div className="profile-image-container">
-                <img src={image} alt="User" className="profile-image" />
-            </div>
-            <div>
-                Follower
-            {allFollowers.map((follower, index) => (
-                <div>
-                    key = {follower.id}
-                    username={follower.username}
-                    email={follower.email}
+        <div className="mypage">
+            <div className="user-profile">
+                <div className="user-info">
                     <div className="profile-image-container">
-                        <img src={follower.image} alt="User" className="profile-image" />
+                        <img src={image} alt="User" className="profile-image" />
                     </div>
-                    <button onClick={() => {navigate("/chat", { state: { email: email , image: image, roomName: [email, follower.email].sort().join() } })}}>
-                        채팅하기
-                    </button>
+                    <div className="user-details">
+                        <p className="username">{username}</p>
+                        <p className="point">Point: {point}</p>
+                    </div>
                 </div>
-            ))}
+
+                <div className="follow-list">
+                    <div className="followers">
+                        <h3 onClick={toggleFollowers}>Follower</h3>
+                        {showFollowers && allFollowers.map((follower) => (
+                        <div key={follower.id} className="follower">
+                            <p className="follower-username">{follower.username}</p>
+                            <div className="fprofile-image-container">
+                                <img src={follower.image} alt="User" className="profile-image" />
+                            </div>
+                            <button onClick={() => { navigate("/chat", { state: { email: email, image: image, roomName: [email, follower.email].sort().join() } }) }}>
+                                채팅하기
+                            </button>
+                        </div>
+                    ))}
+                    </div>
+
+                    <div className="following">
+                        <h3 onClick={toggleFollowings}>Following</h3>
+                        {showFollowings && allFollowings.map((following) => (
+                        <div key={following.id} className="following-user">
+                            <p className="following-username">{following.username}</p>
+                        <div className="fprofile-image-container">
+                            <img src={following.image} alt="User" className="profile-image" />
+                        </div>
+                        <button onClick={() => { navigate("/chat", { state: { email: email, image: image, roomName: [email, following.email].sort().join() } }) }}>
+                            채팅하기
+                        </button>
+                        </div>
+                    ))}
+                    </div>
+                </div>
             </div>
-            <div>
-                Following
-            {allFollowings.map((following, index) => (
-                <div>
-                    key = {following.id}
-                    username={following.username}
-                    email={following.email}
-                    <div className="profile-image-container">
-                        <img src={following.image} alt="User" className="profile-image" />
-                    </div>
-                    <button onClick={() => {navigate("/chat", { state: { email: email , image: image, roomName: [email, following.email].sort().join() } })}}>
-                        채팅하기
-                    </button>
-                </div>
-            ))}
+            <div className='mycampaigns'>
+                캠페인
             </div>
         </div>
     );
