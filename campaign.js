@@ -51,13 +51,13 @@ function Campaign() {
         
 
         const response = await fetch('http://localhost:3000/users/campaign', {
-          method: 'PATCH',
+          method: 'POST',
           headers: {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${storedToken}`
           },
           body: JSON.stringify({
-            title: title,
+            campaign_title: title,
             addPoints: points
           })
         });
