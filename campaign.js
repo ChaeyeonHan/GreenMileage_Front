@@ -81,39 +81,40 @@ function Campaign() {
     };
 
     return(
-        <div className="campaign-container">
-            {campaigns.map((campaign) => (
-                <div key={campaign.id} className="card">
-                    <h2>{campaign.title}</h2>
-                    <img src={campaign.image} alt={campaign.title} className="card-image" />
-                    <div className='campaign-info-container'>
-                      <a href={campaign.link} target="_blank" rel="noopener noreferrer" className="campaign-read-more">Read More</a>
-                      <p className='campaign-points'>{campaign.points} point</p>
-                    </div>
-                    {/* 기타 캠페인 정보 */}
-                    <div className="button-container" style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '10px' }}>
-                        <button className="button" onClick={() => openModal(campaign)}>
-                            {campaign.participants}명 참여중
-                        </button>
-                        <button className="button" style={{ marginLeft: '10px' }} onClick={() => handleParticipation(campaign.title, campaign.points)}>
-                            {participationStatus[campaign.title] ? "참여중" : "참여하기"}
-                        </button>
-                    </div>
-                </div>
-            ))}
-
-        {modalOpen && selectedCampaign && (
+      <div className="campaign-container">
+      {campaigns.map((campaign) => (
+        <div key={campaign.id} className="card">
+          <img src={campaign.image} alt={campaign.title} className="card-image" />
+          <div className="card-content">
+            <h2>{campaign.title}</h2>
+            <a href={campaign.link} target="_blank" rel="noopener noreferrer" className="campaign-read-more">
+              Read More
+            </a>
+            <p className="campaign-points">{campaign.points} point</p>
+            <div className='button-container'>
+              <button className="button" onClick={() => openModal(campaign)}>
+                {campaign.participants}명 참여중
+              </button>
+              <button
+                className={`button ${participationStatus[campaign.title] ? "participating" : ""}`}
+                onClick={() => handleParticipation(campaign.title, campaign.points)}
+              >
+                {participationStatus[campaign.title] ? "참여중" : "참여하기"}
+              </button>
+            </div>
+          </div>
+        </div>
+      ))}
+      {modalOpen && selectedCampaign && (
         <div className="modal">
           <div className="modal-content">
-            <span className="close" onClick={closeModal}>
-              &times;
-            </span>
+            <span className="close" onClick={closeModal}>&times;</span>
             <h2>{selectedCampaign.title}</h2>
             <p>{selectedCampaign.participants}명 참여중</p>
           </div>
         </div>
       )}
-        </div>
+    </div>
     );
 };
 

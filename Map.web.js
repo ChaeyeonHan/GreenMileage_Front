@@ -85,9 +85,6 @@ function Map() {
             googleMapsApiKey={GOOGLE_MAPS_API_KEY} // 위에서 생성한 API 키를 여기에 입력
         >
         <View>
-            <Text> 드디어 완성 </Text>
-        </View>
-        <View>
         <GoogleMap
           mapContainerStyle={mapContainerStyle}
           center={currentPosition || defaultCenter}
