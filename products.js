@@ -84,8 +84,10 @@ function Products() {
                     <h2>{products.name}</h2>
                     <img src={products.imageUrl} alt={products.name} className="card-image" />
                     {/* 기타 캠페인 정보 */}
-                    <a href={products.link} target="_blank" rel="noopener noreferrer">Read More</a>
-                    <p className='products-points'>{products.points} point</p>
+                    <div className = "card-info">
+                      <a href={products.link} target="_blank" rel="noopener noreferrer">Read More</a>
+                      <p className='products-points'>{products.points} point</p>
+                    </div>
                     <div className="button-container" style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '10px' }}>
                         <button className="button" style={{ marginLeft: '10px' }} onClick={() => handleParticipation(products.name, products.points)}>
                             {participationStatus[products.name] ? "구매완료" : "구매하기"}
