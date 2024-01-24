@@ -4,6 +4,8 @@ import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import { StyleSheet, Text, View, Image, ScrollView, TextInput, TouchableOpacity, FlatList } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { useNavigate  } from 'react-router-dom';
+import loginImage from './images/kisspng-computer-icons-google-account-icon-design-login-5afc02dab4a218.0950785215264652427399.jpg';
+import signupImage from './images/register_login_signup_icon_219991.png';
 
 const Header = () => {
 
@@ -34,20 +36,29 @@ const Header = () => {
 
   return (
     <nav style={styles.container}>
-      <li><Link to='/login' style={styles.menuItem}>Login</Link></li>
-        <li><Link to='/signup' style={styles.menuItem}>Signup</Link></li>
+      {/* <li><Link to='/login' style={styles.menuItem}>Login</Link></li>
+        <li><Link to='/signup' style={styles.menuItem}>Signup</Link></li> */}
       <View style={styles.header}>
-        <View style={styles.leftSection}></View>
+        <View style={styles.leftSection}>
+           {/* 로그인 버튼 */}
+          <TouchableOpacity onPress={() => navigate('/login')}>
+            <Image source={loginImage} style={styles.buttonImage} />
+          </TouchableOpacity>
+          {/* 회원가입 버튼 */}
+          <TouchableOpacity onPress={() => navigate('/signup')}>
+            <Image source={signupImage} style={styles.buttonImage} />
+          </TouchableOpacity>
+        </View>
         <Text style={styles.title}>GreenMileage</Text>
         <View style={styles.rightSection}>
           <View style={styles.searchSection}>
-          <Icon name="search-outline" size={20} color="#000" style={styles.searchIcon}/>
-          <TextInput
-            style={styles.searchInput}
-            placeholder="Search"
-            placeholderTextColor="#000" // 플레이스홀더 텍스트 색상을 검정으로 설정
-          />
-        </View>
+            <Icon name="search-outline" size={20} color="#000" style={styles.searchIcon}/>
+            <TextInput
+              style={styles.searchInput}
+              placeholder="Search"
+              placeholderTextColor="#000" // 플레이스홀더 텍스트 색상을 검정으로 설정
+            />
+          </View>
         </View>
       </View>
       <View style={styles.menu}>
@@ -87,7 +98,13 @@ const styles = StyleSheet.create({
     paddingTop: 40,
   },
   leftSection: {
+    flexDirection: 'row',
     flex: 1,
+  },
+  buttonImage: {
+    width: 30,
+    height: 30,
+    marginRight: 10,
   },
   title: {
     flex: 1,

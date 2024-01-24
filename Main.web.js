@@ -64,13 +64,26 @@ const Main = () => {
             data={images}
             keyExtractor={(item, index) => index.toString()}
             renderItem={({ item, index }) => (
-              <View style={{ display: index === currentSlide ? 'flex' : 'none' }}>
+              <TouchableOpacity
+                key={index}
+                style={[
+                  styles.card,
+                  { display: index === currentSlide ? 'flex' : 'none' },
+                ]}
+              >
                 <Image source={{ uri: item.image }} style={styles.featuredImage} />
-                <div>{item.title}</div>
-                <a href={item.link} target="_blank" rel="noopener noreferrer">
-                  Read More
-                </a>
-              </View>
+                <View style={styles.cardContent}>
+                  <Text style={styles.title}>{item.title}</Text>
+                  <TouchableOpacity
+                    style={styles.readMoreButton}
+                    onPress={() => {
+                      window.open(item.link, '_blank');
+                    }}
+                  >
+                    <Text style={styles.readMoreText}>Read More</Text>
+                  </TouchableOpacity>
+                </View>
+              </TouchableOpacity>
             )}
             onMomentumScrollEnd={(e) => {
               const scrollTo = Math.round(e.nativeEvent.contentOffset.x / e.nativeEvent.layoutMeasurement.width);
@@ -94,6 +107,22 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#F8F0E2',
+  },
+  card: {
+    flex: 1,
+    alignItems: 'center',
+  },
+  cardContent: {
+    padding: 15,
+  },
+  readMoreButton: {
+    backgroundColor: '#1d71cb',
+    padding: 8,
+    borderRadius: 4,
+    marginTop: 10,
+  },
+  readMoreText: {
+    color: '#fff',
   },
   featuredImage: {
     marginTop: 80,
