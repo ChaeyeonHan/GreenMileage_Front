@@ -18,7 +18,7 @@ function Campaign() {
           // 각 캠페인에 랜덤 포인트 추가
           const dataPoints = data.map(item => ({
             ...item,
-            points: 1+ Math.floor(Math.random() * 5)
+            points: 1+ Math.floor(Math.random() * 5),
           }));
           setCampaign(dataPoints);
 
@@ -70,11 +70,26 @@ function Campaign() {
 
 
     const [modalOpen, setModalOpen] = useState(false);
+    const [participants, setParticipants] = useState();
 
-    const openModal = (campaign) => {
-      console.log('Open Modal Clicked');
+    const openModal = async (campaign) => {
       setSelectedCampaign(campaign);
       setModalOpen(true);
+      try {
+        const response = await fetch('http://localhost:3000/campaign/info/participants', {
+          method: 'POST', // 또는 'POST', 'PUT', 'DELETE' 등
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            title: campaign.title
+          }),
+        });
+        const data = await response.json();
+        setParticipants(data);
+      } catch (error) {
+        console.error(error);
+      }
     };
 
     const closeModal = () => {
@@ -95,7 +110,7 @@ function Campaign() {
             <p className="campaign-points">{campaign.points} point</p>
             <div className='button-container'>
               <button className="button" onClick={() => openModal(campaign)}>
-                {campaign.participants}명 참여중
+                참여중인 사람 보기
               </button>
               <button
                 className={`button ${participationStatus[campaign.title] ? "participating" : ""}`}
@@ -112,7 +127,11 @@ function Campaign() {
           <div className="modal-content">
             <span className="close" onClick={closeModal}>&times;</span>
             <h2>{selectedCampaign.title}</h2>
-            <p>{selectedCampaign.participants}명 참여중</p>
+            {participants && participants.map((participant) => (
+                        <div key={participant.user_email}>
+                            <p>{participant.user_email}</p>
+                        </div>
+                    ))}
           </div>
         </div>
       )}
