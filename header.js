@@ -143,7 +143,9 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-around',
     paddingVertical: 10,
-    position: 'relative'
+    position: 'relative',
+    borderBottomWidth: 1,  // 추가: header 하단에 구분선 두께
+    borderBottomColor: '#CCCCCC', 
   },
   menuItem: {
     fontSize: 16,
