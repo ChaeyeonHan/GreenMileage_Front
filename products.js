@@ -89,6 +89,7 @@ function Products() {
                       <p className='products-points'>{products.points} point</p>
                     </div>
                     <div className="button-container" style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '10px' }}>
+                      <div>{products.price}</div>
                         <button className="button" style={{ marginLeft: '10px' }} onClick={() => handleParticipation(products.name, products.points)}>
                             {participationStatus[products.name] ? "구매완료" : "구매하기"}
                         </button>
