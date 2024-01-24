@@ -7,9 +7,10 @@ import Icon from 'react-native-vector-icons/Ionicons';
 const Header = () => {
 
   const [showSubMenu, setShowSubMenu] = useState(true);
-
   return (
     <nav style={styles.container}>
+      <li><Link to='/login' style={styles.menuItem}>Login</Link></li>
+        <li><Link to='/signup' style={styles.menuItem}>Signup</Link></li>
       <View style={styles.header}>
         <Text style={styles.title}>GreenMileage</Text>
         <View style={styles.searchSection}>
