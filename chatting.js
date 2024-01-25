@@ -58,37 +58,37 @@ function Chat() {
       };
     
     return (
-        <div className='contain'>
+      <div className='contain'>
         <div className="chat-container">
-      <div className="message-container">
-        {messages.map((message, index) => (
-          <div key={index} className={`message ${getMessageClass(message.senderId, email)}`}>
-            {message.senderId !== email && message.senderId !== 'system' && (
-          <div className="sender-info">
-            <img
-              src={message.profile_image}
-              alt="Profile"
-              className="profile-image"
-            />
-            <span className="sender-name">{message.senderId}</span>
+          <div className="message-container">
+          {messages.map((message, index) => (
+            <div key={index} className={`message ${getMessageClass(message.senderId, email)}`}>
+              {message.senderId !== email && message.senderId !== 'system' && (
+              <div className="sender-info">
+                <img
+                  src={message.profile_image}
+                  alt="Profile"
+                  className="profile-image"
+                />
+                <span className="sender-name">{message.senderId}</span>
+              </div>
+              )}
+              <p className="message-text">{message.message}</p>
+            </div>
+          ))}
           </div>
-        )}
-        <p className="message-text">{message.message}</p>
-          </div>
-        ))}
-      </div>
 
-      <div className="input-container">
-        <input
-          type="text"
-          value={newMessage}
-          onChange={(e) => setNewMessage(e.target.value)}
-          placeholder="Type your message..."
-        />
-        <button onClick={sendMessage}>Send</button>
+          <div className="input-container">
+            <input
+              type="text"
+              value={newMessage}
+              onChange={(e) => setNewMessage(e.target.value)}
+              placeholder="Type your message..."
+            />
+            <button onClick={sendMessage}>Send</button>
+          </div>
+        </div>
       </div>
-    </div>
-    </div>
     );
 }
 
