@@ -56,6 +56,7 @@ function Map() {
           (position) => {
             const { latitude, longitude } = position.coords;
             setCurrentPosition({ lat: latitude, lng: longitude });
+            console.log("Fsef");
           },
           (error) => {
             console.error('Error getting current position:', error);
