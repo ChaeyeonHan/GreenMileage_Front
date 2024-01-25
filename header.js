@@ -36,18 +36,26 @@ const Header = () => {
 
   return (
     <nav style={styles.container}>
-      {/* <li><Link to='/login' style={styles.menuItem}>Login</Link></li>
-        <li><Link to='/signup' style={styles.menuItem}>Signup</Link></li> */}
       <View style={styles.header}>
         <View style={styles.leftSection}>
            {/* 로그인 버튼 */}
-          <TouchableOpacity onPress={() => navigate('/login')}>
-            <Image source={loginImage} style={styles.buttonImage} />
-          </TouchableOpacity>
-          {/* 회원가입 버튼 */}
-          <TouchableOpacity onPress={() => navigate('/signup')}>
-            <Image source={signupImage} style={styles.buttonImage} />
-          </TouchableOpacity>
+          <View style={styles.loginSignupSection}>
+            <TouchableOpacity onPress={() => navigate('/login')}>
+              <Image source={loginImage} style={styles.buttonImage1} />
+            </TouchableOpacity>
+            <Text style={styles.loginSignupText1}>로그인</Text>
+            {/* 회원가입 버튼 */}
+          </View>
+          <View style={styles.loginSignupSection}>
+            <TouchableOpacity onPress={() => navigate('/signup')}>
+              <Image source={signupImage} style={styles.buttonImage2} />
+            </TouchableOpacity>
+            <Text style={styles.loginSignupText2}>회원가입</Text>
+          </View>
+          </View>
+        <View style={styles.describe}>
+          {/* <Text>로그인</Text>
+          <Text>회원가입</Text> */}
         </View>
         <Text style={styles.title}>GreenMileage</Text>
         <View style={styles.rightSection}>
@@ -97,11 +105,28 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     paddingTop: 40,
   },
+  loginSignupSection: {
+    alignItems: 'center',
+  },
+  loginSignupText1: {
+    textAlign: 'center',
+    fontSize: 10,
+    marginRight:2
+  },
+  loginSignupText2: {
+    textAlign: 'center',
+    fontSize: 10,
+  },
   leftSection: {
     flexDirection: 'row',
     flex: 1,
   },
-  buttonImage: {
+  buttonImage1: {
+    width: 30,
+    height: 30,
+    marginRight: 15,
+  },
+  buttonImage2: {
     width: 30,
     height: 30,
     marginRight: 10,
