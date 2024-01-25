@@ -41,8 +41,8 @@ const Main = () => {
 
   return (
     <ScrollView style={styles.container}>
-      <div style={{fontSize: '30px'}}>친환경적인 활동을 통해 포인트를 적립하세요</div>
-      <div> 현재 진행중인 캠페인 </div>
+      <div style={{fontSize: '30px'}} className="text-container">친환경적인 활동을 통해 포인트를 적립하세요</div>
+      <div className="tt-container"> 현재 진행중인 캠페인 </div>
       {loading ? (
         <Text>Loading...</Text>
       ) : (

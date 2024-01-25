@@ -5,6 +5,14 @@
     margin-top: 20px;
     width: 100%;
     }
+    .tt-container {
+        text-align: left;
+        font-size: 20px;
+        margin-bottom: 20px;
+        margin-top: 20px;
+        width: 100%;
+        }
+    
 
 .product-container {
     background-color: #F8F0E2;
