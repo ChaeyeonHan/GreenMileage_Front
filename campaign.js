@@ -163,6 +163,7 @@ function Campaign() {
 
     return(
       <div className="campaign-container">
+                <div className="campaignStyle">다함께 지구를 위한 변화를 만들어주세요!</div>
       {campaigns.map((campaign) => (
         <div key={campaign.id} className="card">
           <img src={campaign.image} alt={campaign.title} className="card-image" />
@@ -198,14 +199,16 @@ function Campaign() {
                 <p>Email: {participant.email}</p>
                 <p>Username: {participant.username}</p>
               </div>
-              <button
-                onClick={() => {
-                  followStatus[participant.email]
-                  ? handleUnfollow(participant.email)
-                  : handleFollow(participant.email)
-                }}>
-                  {followStatus[participant.email] ? "Unfollow" : "Follow"}
+              <div className='buttonPos'>
+                <button
+                  onClick={() => {
+                    followStatus[participant.email]
+                    ? handleUnfollow(participant.email)
+                    : handleFollow(participant.email)
+                  }}>
+                    {followStatus[participant.email] ? "Unfollow" : "Follow"}
                 </button>
+              </div>
             </div>
           ))}
           </div>
