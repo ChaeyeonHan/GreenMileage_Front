@@ -34,6 +34,16 @@ function Copyright(props) {
 
 const defaultTheme = createTheme();
 
+
+const buttonCommonStyles = {
+  backgroundColor: '#F8F0E2',
+  border: 'none',
+  cursor: 'pointer',
+  outline: 'none',
+  marginTop: '1rem',
+  marginBottom: '2rem',
+};
+
 export default function Login() {
   const navigate = useNavigate();
   const handleSubmit = (event) => {
@@ -151,67 +161,68 @@ export default function Login() {
               Login
             </Button>
             {/* 카카오 로그인 버튼 */}
-          <Button
-            fullWidth
-            variant="contained"
-            // sx={{ mt: 1, mb: 2, bgcolor: 'yellow', color: 'black' }} // 카카오 색상에 맞게 스타일을 지정합니다.
+          <button
             onClick={() => handleSocialLogin('Kakao')}
-            sx = {{
-              mt: 1,
-              mb: 2,
+            style={{
+              ...buttonCommonStyles,
+              marginTop: '1rem',
+              marginBottom: '2rem',
+              backgroundColor: '#F8F0E2',
+              height: '40px', // 원하는 높이로 조절
+              width: '400px', // 원하는 너비로 조절
               backgroundImage: `url(${kakaoLoginImage})`,
               backgroundSize: 'cover',
               backgroundRepeat: 'no-repeat',
               backgroundPosition: 'center',
-              color: 'transparent', // 버튼의 텍스트를 투명하게 하여 이미지만 보이게 합니다.
-                '&:hover': {
-              bgcolor: 'transparent', // 호버 상태에서도 배경색을 투명하게 유지합니다.
-            },
+              color: 'transparent',
+              border: 'none',
+              cursor: 'pointer',
+              outline: 'none',
             }}
           >
-            Kakao Login
-          </Button>
+          </button>
            {/* 네이버 로그인 버튼 */}
-          <Button
-            fullWidth
-            variant="contained"
-            // sx={{ mt: 1, mb: 2, bgcolor: 'green', color: 'white' }} // 네이버 색상에 맞게 스타일을 지정합니다.
+          <button
             onClick={() => handleSocialLogin('Naver')}
-            sx = {{
-              mt: 1,
-              mb: 2,
+            style={{
+              ...buttonCommonStyles,
+              marginTop: '1rem',
+              marginBottom: '2rem',
+              backgroundColor: '#F8F0E2',
+              height: '50px', // 원하는 높이로 조절
+              width: '398px', // 원하는 너비로 조절
               backgroundImage: `url(${naverLoginImage})`,
               backgroundSize: '398px 40px',
               backgroundRepeat: 'no-repeat',
               backgroundPosition: 'center',
-              color: 'transparent', // 버튼의 텍스트를 투명하게 하여 이미지만 보이게 합니다.
-                '&:hover': {
-              bgcolor: 'transparent', // 호버 상태에서도 배경색을 투명하게 유지합니다.
-            },
+              color: 'transparent',
+              border: 'none',
+              cursor: 'pointer',
+              outline: 'none',
             }}
           >
             Naver Login
-          </Button>
-          {/* 구글 로그인 버튼 */}
-          <Button
-            fullWidth
-            variant="contained"
-            onClick={() => handleSocialLogin('Google')}
-            // sx={{ mt: 1, mb: 2, bgcolor: 'white', color: 'black' }} // 구글 색상에 맞게 스타일을 지정합니다.
-            sx = {{
-              mt: 1,
-              mb: 2,
+          </button>
+
+          <button
+            style={{
+              backgroundColor: '#F8F0E2',
+              ...buttonCommonStyles,
+              marginTop: '1rem',
+              marginBottom: '2rem',
+              height: '40px', // 원하는 높이로 조절
+              width: '400px', // 원하는 너비로 조절
               backgroundImage: `url(${googleLoginImage})`,
-              backgroundSize: '398px 60px',
+              backgroundSize: 'contain',
               backgroundRepeat: 'no-repeat',
               backgroundPosition: 'center',
               color: 'transparent', // 버튼의 텍스트를 투명하게 하여 이미지만 보이게 합니다.
-                '&:hover': {
-              bgcolor: 'transparent', // 호버 상태에서도 배경색을 투명하게 유지합니다.
-            },
+              border: 'none', // 버튼 스타일 초기화
+              cursor: 'pointer', // 커서를 포인터로 변경하여 클릭 가능한 상태로 표시
+              outline: 'none', // 클릭 효과 제거
             }}
           >
-          </Button>
+          </button>
             <Grid container>
               <Grid item xs>
                 <Link href="#" variant="body2">
