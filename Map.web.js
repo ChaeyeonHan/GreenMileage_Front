@@ -97,13 +97,14 @@ function Map() {
         zIndex: 5,
         display: 'flex',
         flexDirection: 'row',
+        top:580 // 추가된 부분
     };
       
     return (
         <LoadScript
 
             googleMapsApiKey={GOOGLE_MAPS_API_KEY}>
-              <div style={{fontSize: '30px'}}>자전거, 전기차 등을 통해 이동하여 탄소 발자국을 줄여보아요</div>
+              <div className="text-container">자전거, 전기차 등을 통해 이동하며 탄소 발자국을 줄여보아요</div>
           <View style={{ position: 'relative', width: '100%', height: '100%' }}>
         <GoogleMap
           mapContainerStyle={mapContainerStyle}
