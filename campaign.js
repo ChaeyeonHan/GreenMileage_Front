@@ -6,6 +6,7 @@ function Campaign() {
     const [campaigns, setCampaign] = useState([]);
     const [participationStatus, setParticipationStatus] = useState([]);
     const [selectedCampaign, setSelectedCampaign] = useState(null);
+    const [followStatus, setFollowStatus] = useState({});
 
     useEffect(() => {
       // 토큰 가져오기
@@ -66,7 +67,40 @@ function Campaign() {
       } catch (error) {
         console.error('Error during campaign participation:', error);
       }
-  };
+    };
+
+    const handleUnfollow = async (email) => {
+      try {
+        setFollowStatus(prevStatus => ({
+          ...prevStatus,
+          [email]: false,
+        }));
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    const handleFollow = async (email) => {
+      try {
+        const reponse = await fetch('http://localhost:3000/users/follow', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            following_email: email
+          }),
+        });
+
+        // 팔로우 상태 업데이트
+        setFollowStatus(prevStatus => ({
+          ...prevStatus,
+          [email]: true,
+        }));
+      } catch (error) {
+        console.error(error);
+      }
+    }
 
 
     const [modalOpen, setModalOpen] = useState(false);
@@ -129,6 +163,7 @@ function Campaign() {
 
     return(
       <div className="campaign-container">
+                <div className="campaignStyle">다함께 지구를 위한 변화를 만들어주세요!</div>
       {campaigns.map((campaign) => (
         <div key={campaign.id} className="card">
           <img src={campaign.image} alt={campaign.title} className="card-image" />
@@ -164,7 +199,16 @@ function Campaign() {
                 <p>Email: {participant.email}</p>
                 <p>Username: {participant.username}</p>
               </div>
-              <button>Follow</button>
+              <div className='buttonPos'>
+                <button
+                  onClick={() => {
+                    followStatus[participant.email]
+                    ? handleUnfollow(participant.email)
+                    : handleFollow(participant.email)
+                  }}>
+                    {followStatus[participant.email] ? "Unfollow" : "Follow"}
+                </button>
+              </div>
             </div>
           ))}
           </div>
