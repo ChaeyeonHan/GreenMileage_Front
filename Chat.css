@@ -4,7 +4,7 @@
     display: flex;
   justify-content: center;
   align-items: center;
-  max-height: 100%;
+  height: 80%;
   overflow-y: auto;
 }
 .chat-container {
@@ -13,8 +13,7 @@
     padding: 20px;
     border-radius: 8px;
     width: 90%;
-    height: 100%; /* Ensure modal content can take full height */
-    overflow-y: auto;
+    height: 85%;
   }
   
   .message-container {
@@ -34,7 +33,6 @@
   }
 
   .message.sent {
-    margin-left: 10px;
     justify-content: flex-end; /* senderId === email 일 때 오른쪽 정렬 */
     align-items: center;
   }
