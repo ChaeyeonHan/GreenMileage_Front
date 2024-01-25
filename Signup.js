@@ -101,7 +101,7 @@ export default function Signup() {
               required
               fullWidth
               id="email"
-              label="Email Address"
+              label="Id"
               name="email"
               autoComplete="email"
               autoFocus
