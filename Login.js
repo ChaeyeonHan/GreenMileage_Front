@@ -1,4 +1,5 @@
-import * as React from 'react';
+//import * as React from 'react';
+import React, { useEffect, useState } from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -16,6 +17,7 @@ import { useNavigate, Outlet } from "react-router-dom";
 import kakaoLoginImage from './images/kakao_login_medium_wide.png';
 import naverLoginImage from './images/btnG_naverlogin.png';
 import googleLoginImage from './images/web_light_sq_SU@2x.png';
+import axios from 'axios';
 
 function Copyright(props) {
     return (
@@ -84,27 +86,13 @@ export default function Login() {
     let url = '';
     if (platform === 'Kakao') {
       url = 'http://localhost:3000/login/kakao';
+      window.location.href = url;
     } else if (platform === 'Naver') {
       url = 'http://localhost:3000/login/naver';
+      window.location.href = url;
     } else if (platform === 'Google') {
-      url = 'http://localhost:3000/login/redirect';
-    }
-
-    try {
-      const response = await fetch(url, {
-        method: 'GET',
-        credentials: 'include'
-      });
-
-      // 응답 json으로 변환
-      const data = await response.json();
-      if (response.status === 200) {
-        console.log(`${platform} 사용자 로그인 완료: `, data);
-      } else {
-        console.error(`${platform} 로그인 실패:`, data.message);
-      }
-    } catch (error) {
-      console.error(`${platform} 로그인 중 에러 발생:`, error);
+      url = 'http://localhost:3000/login/google';
+      window.location.href = url;
     }
   };
 

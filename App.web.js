@@ -12,6 +12,7 @@ import Chat from './chatting'
 import Ex from './ex'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { StyleSheet} from 'react-native';
+import {Dimensions} from 'react-native';
 
 const App = () => {
   return (
@@ -34,9 +35,11 @@ const App = () => {
   );
 };
 
+
 const styles = StyleSheet.create({
   container: {
     backgroundColor: '#F8F0E2',
+    height: `${Dimensions.get('window').height}px`
   }
 });
 
