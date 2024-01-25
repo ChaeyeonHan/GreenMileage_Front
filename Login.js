@@ -59,7 +59,11 @@ export default function Login() {
     .then(data => {
       const token = data.jwt;
       localStorage.setItem('authToken', token);
-      navigate("/");
+      if(token) navigate("/");
+      else {
+        const errorMessage = "로그인 정보가 틀렸습니다"
+        alert(errorMessage);
+      }
     })
     .catch((error) => {
       console.error('Error:', error);

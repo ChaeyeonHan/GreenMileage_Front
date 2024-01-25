@@ -66,6 +66,7 @@ h2 {
   height: 100px;
   overflow: hidden;
   border-radius: 50%;
+  margin-right: 20px;
   border: 2px solid #000000;
 }
 
@@ -87,7 +88,6 @@ h2 {
   background: rgba(0, 0, 0, 0.5);
   display: flex;
   align-items: center;
-  justify-content: center;
 }
 
 .modal-content {
@@ -95,6 +95,8 @@ h2 {
   padding: 20px;
   border-radius: 8px;
   text-align: center;
+  max-height: 50%; /* Ensure modal content can take full height */
+  overflow-y: auto;
 }
 
 .close {
@@ -108,4 +110,25 @@ h2 {
 .close:focus {
   color: black;
   text-decoration: none;
+}
+
+.participant-card {
+  border: 1px solid #ccc;
+  padding: 15px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+}
+
+.participant-card img {
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: 50%;
+}
+
+/* Additional styling for participant details */
+.participant-details {
+  text-align: left;
 }

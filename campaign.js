@@ -158,12 +158,15 @@ function Campaign() {
             <span className="close" onClick={closeModal}>&times;</span>
             <h2>{selectedCampaign.title}</h2>
             {parts && parts.map((participant) => (
-                <div key={participant.email}>
-                    <p>{participant.email}</p>
-                    <p>{participant.username}</p>
-                    <img src={participant.image} className="fprofile-image-container"/>
-                </div>
-            ))}
+            <div key={participant.email} className="participant-card">
+              <img src={participant.image} alt={participant.username} className="fprofile-image-container" />
+              <div className="participant-details">
+                <p>Email: {participant.email}</p>
+                <p>Username: {participant.username}</p>
+              </div>
+              <button>Follow</button>
+            </div>
+          ))}
           </div>
         </div>
       )}

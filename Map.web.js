@@ -133,13 +133,13 @@ function Map() {
         </GoogleMap>
       <View style={buttonContainerStyle}>
           <Text onClick={handleToggleBicyLocations} style={buttonStyle}>
-              Toggle Bicy Locations
+              자전거 위치
           </Text>
           <Text onClick={handleToggleElecLocations} style={buttonStyle}>
-              Toggle Elec Locations
+              전기 자동차 충전소 위치
           </Text>
           <Text onClick={handleButtonClick} style={buttonStyle}>
-              Current Location
+              현재 위치
           </Text>
       </View>
     </View>  
