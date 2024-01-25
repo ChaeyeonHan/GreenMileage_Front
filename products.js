@@ -79,6 +79,7 @@ function Products() {
 
     return(
         <div className="product-container">
+          <div className="text-container" style={{fontSize: '30px'}}>내일, 그 다음을 생각하는 지속가능 책임 소비</div>
             {products.map((products) => (
                 <div key={products.id} className="card">
                     <h2>{products.name}</h2>

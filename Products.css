@@ -1,3 +1,11 @@
+.text-container {
+    text-align: center;
+    font-size: 30px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    width: 100%;
+    }
+
 .product-container {
     background-color: #F8F0E2;
     display: flex;
